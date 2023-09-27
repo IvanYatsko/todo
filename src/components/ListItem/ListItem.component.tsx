@@ -11,29 +11,36 @@ const ListItem: FC<ListItemProps> = ({
   editItem,
   isEdit,
   saveIssue,
-}) => (
-  <div className="flex justify-between">
-    <span>{item.date}</span>
-    <span>{isEdit ? <InputField saveIssue={saveIssue} editItem={item} /> : item.value}</span>
-    <div>
-      <Button
-        className="bg-cyan-700"
-        onClick={() => editItem(item)}
-        type="primary"
-        shape="circle"
-        icon={<EditOutlined />}
-        size={"middle"}
-      />
-      <Button
-        className="bg-cyan-700"
-        onClick={() => deleteItem(item)}
-        type="primary"
-        shape="circle"
-        icon={<DeleteOutlined />}
-        size={"middle"}
-      />
+}) =>
+  isEdit ? (
+    <InputField saveIssue={saveIssue} editItem={item} />
+  ) : (
+    <div className="flex justify-between">
+      <div>
+        <span className="border mr-2 p-1 border-cyan-700 rounded-md">
+          {item.date}
+        </span>
+        {item.value}
+      </div>
+      <div className="mx-1 flex gap-x-2">
+        <Button
+          className="bg-cyan-700"
+          onClick={() => editItem(item)}
+          type="primary"
+          shape="circle"
+          icon={<EditOutlined />}
+          size={"middle"}
+        />
+        <Button
+          className="bg-cyan-700"
+          onClick={() => deleteItem(item)}
+          type="primary"
+          shape="circle"
+          icon={<DeleteOutlined />}
+          size={"middle"}
+        />
+      </div>
     </div>
-  </div>
-);
+  );
 
 export default ListItem;

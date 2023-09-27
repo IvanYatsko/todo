@@ -9,7 +9,7 @@ const List: FC<ListProps> = ({
   saveIssue,
   editListItem,
 }) => (
-  <div className="">
+  <div className="flex flex-col gap-2">
     {list.map((item) => (
       <ListItem
         item={item}

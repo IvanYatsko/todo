@@ -18,6 +18,7 @@ const InputField: FC<InputFieldProps> = ({ saveIssue, editItem }) => {
         value={value}
         onChange={(e) => setValue(e.target.value)}
         placeholder="Enter your issue"
+        onPressEnter={saveValue}
       />
       <Button className="bg-cyan-700" onClick={saveValue} type="primary">
         {SUBMIT}
