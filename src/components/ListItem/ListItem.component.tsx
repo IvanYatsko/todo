@@ -4,15 +4,16 @@ import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { Button } from "antd";
 import { ListItemProps } from "../../types";
 import InputField from "../InputField/InputField.component";
+import { useAppProvider } from "../../context/AppProvider.context";
 
-const ListItem: FC<ListItemProps> = ({
-  item,
-  deleteItem,
-  editItem,
-  isEdit,
-  saveIssue,
-}) =>
-  isEdit ? (
+const ListItem: FC<ListItemProps> = ({ item }) => {
+  const data = useAppProvider();
+
+  if (!data) return null;
+
+  const { deleteItem, editItem, saveIssue, editListItem } = data;
+
+  return editListItem?.date === item.date ? (
     <InputField saveIssue={saveIssue} editItem={item} />
   ) : (
     <div className="flex justify-between">
@@ -42,5 +43,6 @@ const ListItem: FC<ListItemProps> = ({
       </div>
     </div>
   );
+};
 
 export default ListItem;
